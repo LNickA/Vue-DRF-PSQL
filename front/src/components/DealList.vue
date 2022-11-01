@@ -35,36 +35,30 @@ export default {
     }
 }
 </script>
-<style>
+<style scoped>
 table{
     max-width: 1374px;
     width: 100%;
     border-collapse: collapse;
     margin: auto;
     margin-top: 15px;
-  }
-  td{
-    text-align: left;
-    padding: 5px 15px;
-  }
-  th{
+    margin-bottom: 80px;
+}
+th{
     text-align: center;
-    padding: 5px 15px;
+    padding: 15px;
     border-right: 1px solid #B9E4FF;
   }
-  tr{
+tr{
     padding: 5px;
   }
-  th:first-child{
+th:first-child{
     padding-left: 25px;
   }
-  td:first-child{
-    padding-left: 25px;
-  }
-  th:last-child{
+th:last-child{
     border: none;
   }
-  tr:nth-child(odd){
-    background-color: #F2F7FC;
+tr:nth-child(even){
+    background-color: #fff;
   }
 </style>

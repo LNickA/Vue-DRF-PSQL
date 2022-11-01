@@ -22,6 +22,18 @@ export default {
     
 }
 </script>
-<style >
-    
+<style scoped>
+td{
+    text-align: left;
+    padding:15px;
+  }
+td:first-child{
+    padding-left: 25px;
+  }
+th:last-child{
+    border: none;
+  }
+tr:nth-child(odd){
+    background-color: #F2F7FC;
+  }
 </style>

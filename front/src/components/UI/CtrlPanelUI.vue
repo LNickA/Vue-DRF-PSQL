@@ -1,0 +1,100 @@
+<template>
+    <div class="panel">
+        <div class="panel__container">
+            <div class="panel__title">
+                <div class="panel__slot">
+                    <slot name="text"></slot>
+                </div>
+                <div class="panel__back">
+                    <div class=""></div>
+                    <div @click="$router.push('/')" class="">
+                        <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M15 0C6.75 0 0 6.75 0 15C0 23.25 6.75 30 15 30C23.25 30 30 23.25 30 15C30 6.75 23.25 0 15 0ZM22.5 20.4L20.4 22.5L15 17.1L9.6 22.5L7.5 20.4L12.9 15L7.5 9.6L9.6 7.5L15 12.9L20.4 7.5L22.5 9.6L17.1 15L22.5 20.4Z" fill="#BEE6FF"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <div class="panel__control">
+                <slot name="button"></slot>
+                <a download="" href="" v-if="!showD" >
+                    <svg width="43" height="52" viewBox="0 0 43 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M29.9752 0.991423V12.4368H41.9296L29.9752 0.991423Z" fill="#0DC895"/>
+                    <path d="M28.1909 16.0416C27.2095 16.0416 26.4066 15.2305 26.4066 14.2392V0H7.13693C3.21162 0 0 3.24437 0 7.20971V44.7903C0 48.7556 3.21162 52 7.13693 52H35.8631C39.7884 52 43 48.7556 43 44.7903V15.9515L28.1909 16.0416ZM14.8091 35.1473L12.4896 31.8128L10.2593 35.1473H7.76141L11.2407 30.2808L7.93984 25.5945H10.4378L12.5788 28.6586L14.7199 25.5945H17.0394L13.7386 30.1906L17.2178 35.1473H14.8091ZM26.0498 35.1473H19.1805V25.5945H21.3216V33.3449H26.0498V35.1473ZM34.7925 33.7955C34.5249 34.2461 34.0788 34.6066 33.4544 34.8769C32.8299 35.1473 32.1162 35.2374 31.2241 35.2374C30.5104 35.2374 29.7967 35.1473 29.083 34.9671C28.3693 34.7868 27.834 34.5165 27.388 34.156L28.1017 32.5338C28.5477 32.8042 28.9938 33.0745 29.529 33.2548C30.0643 33.435 30.5996 33.5251 31.2241 33.5251C31.8485 33.5251 32.2946 33.435 32.5622 33.2548C32.8299 33.0745 33.0083 32.8042 33.0083 32.5338C33.0083 32.3535 32.9191 32.0832 32.7407 31.9931C32.5622 31.8128 32.3838 31.7227 32.027 31.6326C31.7593 31.5425 31.4025 31.4523 30.9564 31.3622C30.2427 31.182 29.6183 31.0017 29.1722 30.8215C28.7261 30.6412 28.2801 30.3709 28.0125 30.0104C27.6556 29.6499 27.5664 29.1092 27.5664 28.4783C27.5664 27.9376 27.7448 27.3969 28.0125 26.9463C28.2801 26.4957 28.7261 26.1352 29.3506 25.8648C29.9751 25.5945 30.6888 25.5043 31.5809 25.5043C32.2054 25.5043 32.7407 25.5945 33.3652 25.6846C33.9896 25.8648 34.4357 26.0451 34.8817 26.3154L34.1681 27.9376C33.2759 27.487 32.473 27.2166 31.5809 27.2166C30.9564 27.2166 30.5104 27.3068 30.2427 27.487C29.9751 27.6672 29.7967 27.9376 29.7967 28.2981C29.7967 28.6586 29.9751 28.8388 30.332 29.0191C30.6888 29.1993 31.2241 29.3795 31.8485 29.4697C32.5622 29.6499 33.1867 29.8302 33.6328 30.0104C34.0788 30.1906 34.5249 30.461 34.7925 30.8215C35.1494 31.182 35.2386 31.7227 35.2386 32.3536C35.2386 32.8943 35.0602 33.3449 34.7925 33.7955Z" fill="#0DC895"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+
+export default {
+        props:{
+            showD:{
+                type:Boolean,
+                default: false
+            }
+        },
+}
+</script>
+<style>
+.panel{
+    max-width: 1922px;
+    width: 100%;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.138) -14.07%, rgba(0, 0, 0, 0) 41.75%), url('@/static/images/background-panel.png');
+    max-height: 360px;
+    margin: auto;
+}
+.panel__container{
+    max-width: 1376px;
+    margin: auto;
+    padding: 60px 0px;
+}
+.panel__back{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: flex-end;
+    justify-content: space-between;
+    max-width: 1050px;
+    margin-left: auto;
+    width: 100%;
+}
+.panel__back>div:first-child{
+    max-width: 970px;
+    width: 100%;
+    border: 1px solid #E1F5FF;
+    margin-right: 32px;
+    margin-left: 37px;
+}
+.panel__slot{
+    font-size: 56px;
+    color:white;
+    max-width: 400px;
+    margin: auto;
+}
+.panel__title{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.panel__control{
+    max-width: 1376px;
+    width: 100%;
+    padding: 48px;
+    display: flex;
+    flex-direction: row;
+    background-color: white;
+    box-shadow: 3px 4px 15px -10px rgba(0, 110, 189, 0.2), 0px 1px 30px -3px rgba(0, 78, 135, 0.12);
+    border-radius: 20px;
+    margin-top: 50px;
+}
+.panel__control>button{
+    background-color: #0079C2;
+    color: #fff !important;
+    margin-right: 28px;
+}
+.panel__control>a{
+    height: 52px;
+}
+</style>

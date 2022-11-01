@@ -18,11 +18,12 @@
     
 <style scoped>
 .btn{
-        align-self: flex-end;
         padding: 16px 32px;
         border-radius: 50px;
         border: none;
         color: #b3b3b3;
         font-weight: bold;
+        width: fit-content;
+        height: 52px;
       }
 </style>
