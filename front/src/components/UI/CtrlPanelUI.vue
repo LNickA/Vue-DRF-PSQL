@@ -39,7 +39,7 @@ export default {
 </script>
 <style>
 .panel{
-    max-width: 1922px;
+    max-width: 1920px;
     width: 100%;
     background: linear-gradient(180deg, rgba(0, 0, 0, 0.138) -14.07%, rgba(0, 0, 0, 0) 41.75%), url('@/static/images/background-panel.png');
     max-height: 360px;
