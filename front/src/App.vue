@@ -1,36 +1,27 @@
 <template>
-  <div>
-    <table>
-      <tr>
-        <th>Тип</th>
-        <th>Дата и время сделки</th>
-        <th>Контрагент</th>
-        <th>Пункт поставки</th>
-        <th>Инструмент</th>
-        <th>Начало поставки</th>
-        <th>Конец поставки</th>
-        <th>Объем, МВт</th>
-        <th>Цена, евро / МВт*ч</th>
-      </tr>
-      <tr v-bind:key="row.id" v-for="row in rows">
-        <td>{{row.type}}</td>
-        <td>{{row.date_deal}}</td>
-        <td>{{row.counterpartry}}</td>
-        <td>{{row.delivery_point}}</td>
-        <td>{{row.tool}}</td>
-        <td>{{row.delivery_start}}</td>
-        <td>{{row.delivery_end}}</td>
-        <td>{{row.volume}}</td>
-        <td>{{row.cost}}</td>
-      </tr>
-    </table>
+  <div class="app">
+    <ButtonUI @click="showPopup">Показать попап</ButtonUI>
+    <PopupUI v-model:show="popupVisible">
+      <DealForm @create="createDeal"/>
+    </PopupUI>
+    <DealList :deals="deals"/>
   </div>
 </template>
 <script>
+import DealForm from "@/components/DealForm.vue"
+import DealList from "@/components/DealList.vue"
+import ButtonUI from "./components/UI/ButtonUI.vue";
+import PopupUI from "./components/UI/PopupUI.vue";
 export default {
+  components:{
+    DealForm,
+    DealList,
+    PopupUI,
+    ButtonUI
+},
   data(){
     return{
-      rows:[
+      deals:[
         { id:1,
           type:'esp',
           date_deal:'lorem ipsum',
@@ -64,7 +55,17 @@ export default {
           volume:'lorem ipsum 3',
           cost:'lorem ipsum 3'
         },
-      ]
+      ],
+      popupVisible:false,
+    }
+  },
+  methods:{
+    createDeal(deal){
+      this.deals.push(deal);
+      this.popupVisible = false;
+    },
+    showPopup(){
+      this.popupVisible = true;
     }
   }
 }
@@ -76,34 +77,8 @@ export default {
   box-sizing: border-box;
 }
 
-tr:nth-child(odd){
-  background-color: #F2F7FC;
-}
-table{
-  max-width: 1374px;
-  width: 100%;
-  border-collapse: collapse;
-  margin: auto;
-}
-td{
-  text-align: left;
-  padding: 5px 15px;
-}
-th{
-  text-align: center;
-  padding: 5px 15px;
-  border-right: 1px solid #B9E4FF;
-}
-tr{
-  padding: 5px;
-}
-th:first-child{
-  padding-left: 25px;
-}
-td:first-child{
-  padding-left: 25px;
-}
-th:last-child{
-  border: none;
+.app{
+  padding: 15px;
+  font-size: 14px;
 }
 </style>
