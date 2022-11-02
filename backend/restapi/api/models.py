@@ -23,11 +23,11 @@ class Type(models.Model):
         return self.name
 
 class Deal(models.Model):
-    type = models.ForeignKey(Type, on_delete=models.PROTECT, null=True)
+    type = models.ForeignKey(Type, on_delete=models.CASCADE, null=True)
     date_deal = models.DateField()
-    counterparty = models.ForeignKey(Counterparty, on_delete=models.PROTECT, null=True)
-    delivery_point = models.ForeignKey(Deliverypoint, on_delete=models.PROTECT, null=True)
-    tool = models.ForeignKey(Tool, on_delete=models.PROTECT, null=True)
+    counterparty = models.ForeignKey(Counterparty, on_delete=models.CASCADE, null=True)
+    delivery_point = models.ForeignKey(Deliverypoint, on_delete=models.CASCADE, null=True)
+    tool = models.ForeignKey(Tool, on_delete=models.CASCADE, null=True)
     delivery_start = models.DateField()
     delivery_end = models.DateField()
     volume = models.FloatField()

@@ -1,5 +1,5 @@
 <template>
-    <div class="">>
+    <div class="">
         <select v-model="localModelValue" @change="$emit('update:modelValue', $event.target.value)">
             <option
             v-for="option in options"
@@ -46,7 +46,6 @@ select {
     margin-bottom: 15px;
     background: white;
 }
-select>option{max-width: fit-content;}
 select::-ms-expand{
     margin-right: 10px;
 }

@@ -1,6 +1,6 @@
 <template >
     <tr @click="$router.push(`/counterparty/${counterparty.id}`)">
-        <td>{{counterparty.cp_name}}</td>
+        <td>{{counterparty.name}}</td>
         <td>{{counterparty.cost}}</td>
     </tr>
 </template>
