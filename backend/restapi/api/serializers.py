@@ -4,22 +4,22 @@ from .models import *
 class DeliverypointSerializer(serializers.ModelSerializer):
     class Meta:
         model = Deliverypoint
-        fields= ("point_name",)
+        fields= ("name",'id')
 
 class TypeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Type
-        fields= ("type_name",)
+        fields= ("name",'id')
 
 class CounterpartySerializer(serializers.ModelSerializer):
     class Meta:
         model = Counterparty
-        fields= ("cp_name",'id')
+        fields= ("name",'id')
 
 class ToolSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tool
-        fields= ("tool_name",)
+        fields= ("name",'id')
 
 class DealSerializer(serializers.ModelSerializer):
     type = TypeSerializer()

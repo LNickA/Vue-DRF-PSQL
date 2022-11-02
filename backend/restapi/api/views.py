@@ -21,6 +21,10 @@ class ToolApiView(generics.ListCreateAPIView):
     queryset = Tool.objects.all()
     serializer_class = ToolSerializer
 
+class TypeApiView(generics.ListCreateAPIView):
+    queryset = Type.objects.all()
+    serializer_class = TypeSerializer
+
 class DeliverypointApiView(generics.ListCreateAPIView):
     queryset = Deliverypoint.objects.all()
     serializer_class = DeliverypointSerializer

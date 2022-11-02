@@ -2,31 +2,29 @@
     <div>
         <h3>Создание сделки</h3>
         <form @submit.prevent>
-            <div v-if="haveErrors&&this.errors.type.non_field_errors!=null" class="">{{this.errors.type.non_field_errors[0]}}</div>  
-            <InputUI
-              v-model.trim="deal.type"
-              type="text"
-              required
-              placeholder="Тип"/>
+            <div v-if="haveErrors&&!!!this.errors.type" class="">{{this.errors.type}}</div>  
+            <SelectUI
+            v-model='selectType'
+            :options="selectTypeArray"
+            />
             <div v-if="haveErrors&&this.errors.date_deal!=null" class="">{{this.errors.date_deal[0]}}</div>
             <InputUI
               v-model.trim="deal.date_deal" 
               type="text"
               required
               placeholder="Дата и время сделки"/>
-            <div v-if="haveErrors&&this.errors.counterparty.non_field_errors!=null" class="">{{this.errors.counterparty.non_field_errors[0]}}</div>
-            <InputUI
-              v-model.trim="deal.counterparty"
-              type="text"
-              required
-              placeholder="Контрагент"/>
-            <div v-if="haveErrors&&this.errors.delivery_point.non_field_errors!=null" class="">{{this.errors.delivery_point.non_field_errors[0]}}</div>
+            <div v-if="haveErrors&&this.errors.counterparty.non_field_errors!=null" class="">{{this.errors.counterparty}}</div>
+            <SelectUI
+            v-model='selectCounterParty'
+            :options="selectCounterPartyArray"
+            />
+            <div v-if="haveErrors&&this.errors.delivery_point.non_field_errors!=null" class="">{{this.errors.delivery_point}}</div>
             <InputUI
               v-model.trim="deal.delivery_point" 
               type="text"
               required
               placeholder="Пункт поставки"/>
-            <div v-if="haveErrors&&this.errors.tool.non_field_errors!=null" class="">{{this.errors.tool.non_field_errors[0]}}</div>
+            <div v-if="haveErrors&&this.errors.tool.non_field_errors!=null" class="">{{this.errors.tool}}</div>
             <InputUI
               v-model.trim="deal.tool"
               type="text"
@@ -63,11 +61,14 @@
 <script>
 import ButtonUI from './UI/ButtonUI.vue';
 import InputUI from './UI/InputUI.vue';
-
+import axios from 'axios';
+import SelectUI from './UI/SelectUI.vue';
 export default {
     components:{
-        InputUI, ButtonUI
-    },
+    InputUI,
+    ButtonUI,
+    SelectUI,
+},
     props:{
         id:{
             type: Number,
@@ -88,12 +89,17 @@ export default {
                 cost:"",
             },
             errors:{},
-            haveErrors:false
+            haveErrors:false,
+            selectType:"1",
+            selectTypeArray:[],
+            selectCounterParty:"1",
+            selectCounterPartyArray:[],
         };
     },
 
     methods:{
         createDeal(){ 
+          console.log(this.errors.type)
           this.postNewDeal();
           console.log(this.errors.length)
           this.haveErrors = true
@@ -120,7 +126,7 @@ export default {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ 
-                                        type: this.deal.type,
+                                        type: {"type_name": "[eq", "id":this.selectType} ,
                                         date_deal: this.deal.date_deal,
                                         counterparty: this.deal.counterparty,
                                         delivery_point: this.deal.delivery_point,
@@ -134,9 +140,31 @@ export default {
             const data = await response.json();
 
             this.errors = data
-            console.log(data)
-            console.log(this.errors)
+            console.log(this.selectType)
+            console.log(requestOptions.body)
+    },
+    async fetchType(){
+            try{
+                const response = await axios.get('http://127.0.0.1:8000/api/type/');
+                this.selectTypeArray = response.data;
+                console.log(response.data)
+            } catch (e){
+                alert('Не отрабатывает')
             }
+        },
+    async fetchCounterParty(){
+            try{
+                const response = await axios.get('http://127.0.0.1:8000/api/counterparty/');
+                this.selectCounterPartyArray = response.data;
+                console.log(response.data)
+            } catch (e){
+                alert('Не отрабатывает')
+            }
+        },
+    },
+    mounted(){
+      this.fetchType();
+      this.fetchCounterParty();
     }
 }
 </script>

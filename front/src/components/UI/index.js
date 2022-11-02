@@ -4,7 +4,7 @@ import PopupUI from "@/components/UI/PopupUI.vue";
 import NavBar from "@/components/UI/NavBar.vue";
 import FooterUI from "@/components/UI/FooterUI.vue";
 import CtrlPanelUI from "@/components/UI/CtrlPanelUI.vue";
-// import SelectUI from "@/components/UI/SelectUI.vue";
+import SelectUI from "@/components/UI/SelectUI.vue";
 // import CheckBoxUI from "@/components/UI/CheckBoxUI.vue";
 export default [
     Button,
@@ -12,7 +12,7 @@ export default [
     PopupUI,
     NavBar,
     FooterUI,
-    CtrlPanelUI
-    // SelectUI,
+    CtrlPanelUI,
+    SelectUI
     // CheckBoxUI
 ]

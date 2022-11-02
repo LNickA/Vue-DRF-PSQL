@@ -2,25 +2,25 @@ from django.db import models
 
 # Create your models here.
 class Counterparty(models.Model):
-    cp_name = models.CharField(max_length=100, db_index=True)
+    name = models.CharField(max_length=100, db_index=True)
 
     def __str__(self):
-        return self.cp_name
+        return self.name
 
 class Deliverypoint(models.Model):
-    point_name = models.CharField(max_length=100, db_index=True)
+    name = models.CharField(max_length=100, db_index=True)
     def __str__(self):
-        return self.point_name
+        return self.name
 
 class Tool(models.Model):
-    tool_name = models.CharField(max_length=100, db_index=True)
+    name = models.CharField(max_length=100, db_index=True)
     def __str__(self):
-        return self.tool_name 
+        return self.name 
 
 class Type(models.Model):
-    type_name = models.CharField(max_length=100, db_index=True)
+    name = models.CharField(max_length=100, db_index=True)
     def __str__(self):
-        return self.type_name
+        return self.name
 
 class Deal(models.Model):
     type = models.ForeignKey(Type, on_delete=models.PROTECT, null=True)

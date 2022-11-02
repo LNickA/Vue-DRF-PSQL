@@ -20,6 +20,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/deal/', DealApiView.as_view()),
     path('api/counterparty/', CounterPartyApiView.as_view()),
-    # path('api/deal/', DealApiView.as_view()),
+    path('api/type/', TypeApiView.as_view()),
+    path('api/tool/', ToolApiView.as_view()),
+    path('api/deliverypoint/', DeliverypointApiView.as_view()),
     path('api/counterparty/<slug:id>/',CounterPartyDealsApiView.as_view())
 ]
