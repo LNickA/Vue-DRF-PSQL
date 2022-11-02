@@ -1,10 +1,10 @@
 <template >
     <tr>
-        <td>{{deal.type}}</td>
+        <td>{{deal.type.type_name}}</td>
         <td>{{deal.date_deal}}</td>
-        <td>{{deal.counterpartry}}</td>
-        <td>{{deal.delivery_point}}</td>
-        <td>{{deal.tool}}</td>
+        <td>{{deal.counterparty.cp_name}}</td>
+        <td>{{deal.delivery_point.point_name}}</td>
+        <td>{{deal.tool.tool_name}}</td>
         <td>{{deal.delivery_start}}</td>
         <td>{{deal.delivery_end}}</td>
         <td>{{deal.volume}}</td>

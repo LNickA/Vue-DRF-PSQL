@@ -72,6 +72,7 @@ export default {
     color:white;
     max-width: 400px;
     margin: auto;
+    flex-basis: 100%;
 }
 .panel__title{
     display: flex;

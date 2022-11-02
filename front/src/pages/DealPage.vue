@@ -5,17 +5,18 @@
         <template v-slot:button><ButtonUI @click="showPopup">Добавить сделку</ButtonUI></template>
       </CtrlPanelUI>
       <PopupUI v-model:show="popupVisible">
-        <DealForm @create="createDeal"/>
+        <DealForm :id="Math.max(...deals.map(iter=> iter.id))" @create="createDeal"/>
       </PopupUI>
       <DealList :deals="deals"/>
     </div>
   </template>
   <script>
-  import DealForm from "@/components/DealForm.vue"
-  import DealList from "@/components/DealList.vue"
-  import ButtonUI from "@/components/UI/ButtonUI.vue";
+import DealForm from "@/components/DealForm.vue"
+import DealList from "@/components/DealList.vue"
+import ButtonUI from "@/components/UI/ButtonUI.vue";
 import CtrlPanelUI from "@/components/UI/CtrlPanelUI.vue";
-  import PopupUI from "@/components/UI/PopupUI.vue";
+import PopupUI from "@/components/UI/PopupUI.vue";
+import axios from 'axios';
   export default {
     components:{
     DealForm,
@@ -27,39 +28,6 @@ import CtrlPanelUI from "@/components/UI/CtrlPanelUI.vue";
     data(){
       return{
         deals:[
-          { id:1,
-            type:'esp',
-            date_deal:'lorem ipsum',
-            counterpartry:'lorem ipsum',
-            delivery_point:'lorem ipsum',
-            tool:'lorem ipsum',
-            delivery_start:'lorem ipsum',
-            delivery_end:'lorem ipsum',
-            volume:'lorem ipsum',
-            cost:'lorem ipsum'
-          },
-          { id:2,
-            type:'efet',
-            date_deal:'lorem ipsum 2',
-            counterpartry:'lorem ipsum 2',
-            delivery_point:'lorem ipsum 2',
-            tool:'lorem ipsum 2',
-            delivery_start:'lorem ipsum 2',
-            delivery_end:'lorem ipsum 2',
-            volume:'lorem ipsum 2',
-            cost:'lorem ipsum 2'
-          },
-          { id:3,
-            type:'esp',
-            date_deal:'lorem ipsum 2',
-            counterpartry:'lorem ipsum 3',
-            delivery_point:'lorem ipsum 3',
-            tool:'lorem ipsum 3',
-            delivery_start:'lorem ipsum 3',
-            delivery_end:'lorem ipsum 3',
-            volume:'lorem ipsum 3',
-            cost:'lorem ipsum 3'
-          },
         ],
         popupVisible:false,
       }
@@ -69,9 +37,21 @@ import CtrlPanelUI from "@/components/UI/CtrlPanelUI.vue";
         this.deals.push(deal);
         this.popupVisible = false;
       },
+      async fetchDeals(){
+            try{
+                const response = await axios.get('http://127.0.0.1:8000/api/deal/');
+                this.deals = response.data;
+                console.log(response.data)
+            } catch (e){
+                alert('Не отрабатывает')
+            }
+        },
       showPopup(){
         this.popupVisible = true;
       }
+    },
+    mounted(){
+      this.fetchDeals();
     }
   }
   </script>

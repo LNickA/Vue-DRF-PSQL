@@ -20,6 +20,6 @@
     border: 1px solid #ECECEC;
     border-radius: 50px;
     padding: 16px 32px;
-    margin-top: 15px;
+    margin-bottom: 15px;
   }
 </style>
