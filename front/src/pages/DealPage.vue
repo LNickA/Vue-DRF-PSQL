@@ -41,7 +41,6 @@ import axios from 'axios';
             try{
                 const response = await axios.get('http://127.0.0.1:8000/api/deal/');
                 this.deals = response.data;
-                console.log(response.data)
             } catch (e){
                 alert('Не отрабатывает')
             }

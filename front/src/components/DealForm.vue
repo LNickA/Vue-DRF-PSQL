@@ -130,7 +130,6 @@ export default {
             this.deal.tool=this.selectToolArray[this.selectTool-1];
             if (response.status==201){
                 this.haveErrors = true
-                console.log(this.deal)
                 this.$emit("create", this.deal);
                 this.deal = {         
                     type:'',

@@ -46,7 +46,6 @@ export default {
         createCounterParty(){ 
             this.postCounterParty();
             this.haveErrors = true
-            console.log(this.errors)
         },
         async postCounterParty(){
             const requestOptions = {
@@ -55,7 +54,6 @@ export default {
                 body: JSON.stringify({ name: this.counterparty.name,
                                         score: this.counterparty.score })
             };
-            console.log(requestOptions.body)
             const response = await fetch("http://127.0.0.1:8000/api/counterparty/", requestOptions);
             const data = await response.json();
             this.errors = data
