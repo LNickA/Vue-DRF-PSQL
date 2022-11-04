@@ -1,6 +1,6 @@
 <template>
     <div>
-      <CtrlPanelUI>
+      <CtrlPanelUI :statement_data="deals" :istDeal="true">
         <template v-slot:text>Сделки</template>
         <template v-slot:button><ButtonUI @click="showPopup">Добавить сделку</ButtonUI></template>
       </CtrlPanelUI>
@@ -44,6 +44,10 @@ import axios from 'axios';
                 console.log(response.data)
             } catch (e){
                 alert('Не отрабатывает')
+            }
+            for (let i = 0; i < this.deals.length; i++) {
+               this.deals[i].cost = (String(this.deals[i].cost)).replace('.',',')
+              
             }
         },
       showPopup(){

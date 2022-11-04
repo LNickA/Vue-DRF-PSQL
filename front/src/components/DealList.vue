@@ -19,7 +19,7 @@
           </table>
     </div>
     <div v-show="deals.length === 0">
-      <h3>Нет записей</h3>
+      <h3>Загрузка</h3>
     </div>
 </template>
 <script>
@@ -60,5 +60,10 @@ th:last-child{
   }
 tr:nth-child(even){
     background-color: #fff;
+  }
+  div>h3{
+    text-align: center;
+    margin-top: 15px;
+    font-size: 18px;
   }
 </style>

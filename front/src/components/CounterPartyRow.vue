@@ -1,7 +1,7 @@
 <template >
     <tr @click="$router.push(`/counterparty/${counterparty.id}`)">
         <td>{{counterparty.name}}</td>
-        <td>{{counterparty.cost}}</td>
+        <td>{{counterparty.score}}</td>
     </tr>
 </template>
 <script>

@@ -2,63 +2,63 @@
     <div>
         <h3>Создание сделки</h3>
         <form @submit.prevent>
-            <div v-if="haveErrors&&!!!this.errors.type" class="">{{this.errors.type}}</div>  
+            <div v-if="haveErrors&&this.errors.type">{{this.errors.type}}</div>  
             <SelectUI
             v-model='selectType'
             :options="selectTypeArray"
             />
-            <div v-if="haveErrors&&this.errors.date_deal!=null" class="">{{this.errors.date_deal[0]}}</div>
+            <div v-if="haveErrors&&this.errors.date_deal[0]!=null">{{this.errors.date_deal}}</div>
             <InputUI
               v-model.trim="deal.date_deal" 
               type="date"
-              min="1990-01-01"
+              min="1970-01-01"
               max="2023-12-31"
               required
               placeholder="Дата и время сделки (ДД.ММ.ГГГГ)"/>
-            <div v-if="haveErrors&&this.errors.counterparty!=null" class="">{{this.errors.counterparty.non_field_errors[0]}}</div>
+            <div v-if="haveErrors&&this.errors.counterparty!=null">{{this.errors.counterparty.non_field_errors}}</div>
             <SelectUI
             v-model='selectCounterParty'
             :options="selectCounterPartyArray"
             />
-            <div v-if="haveErrors&&this.errors.delivery_point!=null" class="">{{this.errors.delivery_point.non_field_errors[0]}}</div>
+            <div v-if="haveErrors&&this.errors.delivery_point!=null">{{this.errors.delivery_point.non_field_errors}}</div>
             <SelectUI
             v-model='selectDeliveryPoint'
             :options="selectDeliveryPointArray"
             />
-            <div v-if="haveErrors&&this.errors.tool!=null" class="">{{this.errors.tool.non_field_errors[0]}}</div>
+            <div v-if="haveErrors&&this.errors.tool!=null">{{this.errors.tool.non_field_errors}}</div>
             <SelectUI
             v-model='selectTool'
             :options="selectToolArray"
             />
-            <div v-if="haveErrors&&this.errors.delivery_start!=null" class="">{{this.errors.delivery_start[0]}}</div>
+            <div v-if="haveErrors&&this.errors.delivery_start[0]!=null">{{this.errors.delivery_start}}</div>
             <InputUI
               v-model.trim="deal.delivery_start" 
               type="date"
-              min="1990-01-01"
+              min="1970-01-01"
               max="2023-12-31"
               required
               placeholder="Начало поставки (ДД.ММ.ГГГГ)"/>
-            <div v-if="haveErrors&&this.errors.delivery_end!=null" class="">{{this.errors.delivery_end[0]}}</div>
+            <div v-if="haveErrors&&this.errors.delivery_end[0]!=null">{{this.errors.delivery_end}}</div>
             <InputUI
               v-model.trim="deal.delivery_end"
               type="date"
-              min="1990-01-01"
+              min="1970-01-01"
               max="2023-12-31"
               required
               placeholder="Конец поставки (ДД.ММ.ГГГГ)"/>
-            <div v-if="haveErrors&&this.errors.volume!=null" class="">{{this.errors.volume[0]}}</div>
+            <div v-if="haveErrors&&this.errors.volume!=null">{{this.errors.volume[0]}}</div>
             <InputUI
               v-model.number="deal.volume" 
               type="text"
               required
               placeholder="Объем, МВт"/>
-            <div v-if="haveErrors&&this.errors.cost!=null" class="">{{this.errors.cost[0]}}</div>
+            <div v-if="haveErrors&&this.errors.cost!=null">{{this.errors.cost[0]}}</div>
             <InputUI
               v-model.number="deal.cost"
               type="text"
               required
               placeholder="Цена, евро / МВт*ч"/>
-            <ButtonUI @click="createDeal" class="btn">Создать</ButtonUI>
+            <ButtonUI @click="postNewDeal" class="btn">Создать</ButtonUI>
         </form>
     </div>
 </template>
@@ -106,29 +106,6 @@ export default {
     },
 
     methods:{
-        createDeal(){ 
-          this.postNewDeal();
-          this.haveErrors = true
-          if (Object.keys(this.errors).length == 0){
-              this.deal.type = this.selectTypeArray[this.selectType-1],
-              this.deal.counterparty=this.selectCounterPartyArray[this.selectCounterParty-1],
-              this.deal.delivery_point=this.selectDeliveryPointArray[this.selectDeliveryPoint-1],
-              this.deal.tool=this.selectToolArray[this.selectTool-1],
-              console.log(this.deal)
-              this.$emit("create", this.deal);
-              this.deal = {         
-                  type:'',
-                  date_deal:'',
-                  counterparty:'',
-                  delivery_point:'',
-                  tool:'',
-                  delivery_start:'',
-                  delivery_end:'',
-                  volume:'',
-                  cost:''
-            }
-        }
-    },
     async postNewDeal(){
             const requestOptions = {
                 method: "POST",
@@ -144,13 +121,30 @@ export default {
                                         volume: this.deal.volume,
                                         cost: this.deal.cost })
             };
-            console.log(requestOptions.body)
             const response = await fetch("http://127.0.0.1:8000/api/deal/", requestOptions);
             const data = await response.json();
-
             this.errors = data
-            console.log(Object.keys(this.errors).length)
-            console.log(this.errors)
+            this.deal.type = this.selectTypeArray[this.selectType-1],
+            this.deal.counterparty=this.selectCounterPartyArray[this.selectCounterParty-1],
+            this.deal.delivery_point=this.selectDeliveryPointArray[this.selectDeliveryPoint-1],
+            this.deal.tool=this.selectToolArray[this.selectTool-1];
+            if (response.status==201){
+                this.haveErrors = true
+                console.log(this.deal)
+                this.$emit("create", this.deal);
+                this.deal = {         
+                    type:'',
+                    date_deal:'',
+                    counterparty:'',
+                    delivery_point:'',
+                    tool:'',
+                    delivery_start:'',
+                    delivery_end:'',
+                    volume:'',
+                    cost:''
+            }
+        }
+            
     },
     async fetchType(){
             try{

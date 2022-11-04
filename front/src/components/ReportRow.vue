@@ -1,6 +1,6 @@
 <template >
     <tr>
-        <td>{{report.credit_rating}}</td>
+        <td>{{report.score}}</td>
         <td>{{report.volume}}</td>
         <td>{{report.cost}}</td>
     </tr>

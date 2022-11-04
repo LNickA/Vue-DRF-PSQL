@@ -23,5 +23,7 @@ urlpatterns = [
     path('api/type/', TypeApiView.as_view()),
     path('api/tool/', ToolApiView.as_view()),
     path('api/deliverypoint/', DeliverypointApiView.as_view()),
-    path('api/counterparty/<slug:id>/',CounterPartyDealsApiView.as_view())
+    path('api/counterparty/<slug:id>/',CounterPartyDealsApiView.as_view()),
+    path('api/report/',ReportApiView.as_view()),
+    path('api/report/<slug:pk>/',UpdateReportApiView.as_view())
 ]

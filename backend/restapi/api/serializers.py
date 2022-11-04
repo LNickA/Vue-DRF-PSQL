@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from .models import *
+from datetime import datetime
 
 class DeliverypointSerializer(serializers.ModelSerializer):
     class Meta:
@@ -14,7 +15,7 @@ class TypeSerializer(serializers.ModelSerializer):
 class CounterpartySerializer(serializers.ModelSerializer):
     class Meta:
         model = Counterparty
-        fields= ("name",'id')
+        fields= "__all__"
 
 class ToolSerializer(serializers.ModelSerializer):
     class Meta:
@@ -50,6 +51,7 @@ class DealSerializer(serializers.ModelSerializer):
                                         volume=validated_data.pop('volume'),
                                         cost=validated_data.pop('cost')
                                         )
+
         return instance
 
 
@@ -61,3 +63,24 @@ class CounterpartyDealsSerializers(serializers.ModelSerializer):
     class Meta:
         model = Deal
         fields = ('id','type','date_deal','counterparty','delivery_point', 'tool', 'delivery_start','delivery_end', 'volume','cost')
+
+
+class ReportSerializers(serializers.ModelSerializer):
+    class Meta: 
+        model =  Deal
+        fields =('volume','cost','delivery_start','delivery_end',)
+
+class UpdateReportSerializers(serializers.ModelSerializer):
+    class Meta: 
+        model = Report
+        fields ='__all__'
+
+    def update(self, instance, validated_data):
+         
+            instance.score = validated_data['score']
+            instance.volume = validated_data['volume']
+            instance.cost = validated_data['cost']
+
+            instance.save()
+
+            return instance

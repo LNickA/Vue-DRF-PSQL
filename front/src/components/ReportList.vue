@@ -13,7 +13,7 @@
           </table>
     </div>
     <div v-show="reports.length === 0">
-      <h3>Нет записей</h3>
+      <h3>Загрузка</h3>
     </div>
 </template>
 <script>
@@ -25,7 +25,8 @@ export default {
             type:Array,
             required:true
         }
-    }
+    },
+
 }
 </script>
 <style scoped>
@@ -57,4 +58,9 @@ th:last-child{
 tr:nth-child(even){
     background-color: #fff;
   }
+div>h3{
+  text-align: center;
+  margin-top: 15px;
+  font-size: 18px;
+}
 </style>

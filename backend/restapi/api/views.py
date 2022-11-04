@@ -13,10 +13,6 @@ class CounterPartyApiView(generics.ListCreateAPIView):
     queryset = Counterparty.objects.all()
     serializer_class = CounterpartySerializer
 
-class CounterPartyApiView(generics.ListCreateAPIView):
-    queryset = Counterparty.objects.all()
-    serializer_class = CounterpartySerializer
-
 class ToolApiView(generics.ListCreateAPIView):
     queryset = Tool.objects.all()
     serializer_class = ToolSerializer
@@ -34,3 +30,11 @@ class CounterPartyDealsApiView(generics.ListCreateAPIView):
     serializer_class = CounterpartyDealsSerializers
     def get_queryset(self):
         return Deal.objects.filter(counterparty = self.kwargs['id'])
+
+class ReportApiView(generics.ListAPIView):
+        queryset = Deal.objects.order_by('-cost')
+        serializer_class = ReportSerializers
+
+class UpdateReportApiView(generics.UpdateAPIView):
+        queryset = Report.objects.all()
+        serializer_class = UpdateReportSerializers

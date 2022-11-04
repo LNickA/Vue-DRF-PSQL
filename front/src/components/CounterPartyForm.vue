@@ -2,12 +2,18 @@
     <div>
         <h3>Добавление контрагента</h3>
         <form @submit.prevent>
-            <div v-show="haveErrors&&this.errors[0]!=null" class="">{{this.errors[0]}}</div>
+            <div v-show="haveErrors&&this.errors.name!=null" class="">{{this.errors.name}}</div>
             <InputUI
               v-model.trim="counterparty.name"
               type="text"
               required
               placeholder="Имя контрагента"/>
+              <div v-show="haveErrors&&this.errors.score!=null" class="">{{this.errors.score}}</div>
+              <InputUI
+              v-model.trim="counterparty.score"
+              type="text"
+              required
+              placeholder="Цена закрытия"/>
             <ButtonUI @click="createCounterParty" class="btn">Создать</ButtonUI>
         </form>
     </div>
@@ -30,7 +36,7 @@ export default {
         return{
             counterparty: {
                 name:"",
-                cost:"Отсутствует",
+                score:"",
             },
             haveErrors:false,
             errors:{},
@@ -40,25 +46,24 @@ export default {
         createCounterParty(){ 
             this.postCounterParty();
             this.haveErrors = true
-            console.log(Object.keys(this.errors).length)
-
+            console.log(this.errors)
         },
         async postCounterParty(){
             const requestOptions = {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ name: this.counterparty.name })
+                body: JSON.stringify({ name: this.counterparty.name,
+                                        score: this.counterparty.score })
             };
+            console.log(requestOptions.body)
             const response = await fetch("http://127.0.0.1:8000/api/counterparty/", requestOptions);
             const data = await response.json();
-            this.errors = data.name
-            console.log(this.errors)
-            console.log(Object.keys(this.errors).length)
-            if (Object.keys(this.errors).length == 0){
-                console.log(Object.keys(this.errors).length)
+            this.errors = data
+            if (response.status==201){
                 this.$emit("create", this.counterparty);
                 this.counterparty = {         
                     name:'',
+                    score:''
                 };
             }
             }
