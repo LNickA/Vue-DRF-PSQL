@@ -4,7 +4,6 @@ services:
   db:
     image: postgres:13
     environment:
-        POSGRES_DB: 'restDB'
         POSGRES_USER: 'postgres'
         POSGRES_PASSWORD: '6Yr!baH(9nDt'
         POSTGRES_HOST_AUTH_METHOD: "trust"
@@ -18,13 +17,13 @@ services:
     build: 
       context: ./
       dockerfile: Dockerfile
-    command:  bash -c "ls &&
-              python restapi/manage.py runserver 0.0.0.0:8000"
+    command:  bash -c "python /usr/src/restapi/manage.py migrate &&
+              python /usr/src/restapi/manage.py runserver 0.0.0.0:8000"
     ports:
       - "8000:8000"
     depends_on:
       - db
     volumes:
-      - .:/usr/src/restapi/
+      - .:/usr/src/
   
   

@@ -82,10 +82,10 @@ DATABASES = {
     # },
         'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'restDB',
+        'NAME': 'restdb',
         'USER' : 'postgres',
-        'PASSWORD' : '6Yr!baH(9nDt',
-        'HOST' : '127.0.0.1',
+        'PASSWORD' : 'postgres',
+        'HOST' : 'db',
         'PORT' : '5432',
     }
 }
@@ -133,9 +133,9 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ORIGIN_ALLOW_ALL = True
-ALLOWED_HOSTS = ["127.0.0.1"]
+ALLOWED_HOSTS = ["127.0.0.1",'localhost']
 CORS_ORIGIN_WHITELIST = [
-    'http://127.0.0.1:8000'
+    'http://127.0.0.1:8000', 'http://localhost:8000'
 ]
 REST_FRAMEWORK = {
 }
