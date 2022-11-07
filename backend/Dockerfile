@@ -3,11 +3,10 @@ FROM python
 ENV PYTHONDONTWRITEBYCODE 1
 ENV PYTHONUNBUFFERED 1
 
-WORKDIR /usr/src/restapi
+WORKDIR /root/restapi
 
-COPY . /usr/src/
-COPY ./restapi/manage.py /usr/src/restapi/manage.py
-RUN pip install -r /usr/src/restapi/requirements.txt
+COPY . /root/
+RUN pip install -r /root/restapi/requirements.txt
 
 
 EXPOSE 8000
