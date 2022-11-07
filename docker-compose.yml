@@ -2,6 +2,9 @@ version: '2.12'
 
 services:
   db:
+    build:
+      context: ./
+      dockerfile: Dockerfile
     container_name: database
     image: postgres:13
     environment:
