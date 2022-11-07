@@ -10,6 +10,5 @@ COPY package.json /app/package.json
 
 RUN npm config set strict-ssl false
 RUN npm install
-RUN npm install @vue/cli
 
 CMD npm run serve
