@@ -162,7 +162,7 @@ export default{
 }
 .card__title{
     font-size: 28px;
-    margin-bottom: 60px;
+    margin-bottom: 40px;
 }
 .card__info{
     margin-top: 18px;
@@ -170,6 +170,7 @@ export default{
     display: flex;
     align-items: center;
     max-width: 150px;
+    font-size: 18px;
 }
 .card__info>div{
     margin-right: 15px;
@@ -188,7 +189,7 @@ export default{
     justify-content: space-between;
     padding: 48px;
     background-repeat: no-repeat;
-    background-position: center right;
+    background-position: right 0% top 40%;;
 
 
 }
@@ -220,4 +221,16 @@ export default{
 .main{
     position: relative;
 }
+@media (max-width: 1200px) { 
+.card__container{
+    flex-direction: column;
+    justify-content: space-between;
+}
+.card__card{
+    margin: auto;
+    margin-bottom: 20px;
+}
+
+}
+
 </style>
