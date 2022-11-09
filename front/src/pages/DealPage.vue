@@ -39,7 +39,7 @@ import axios from 'axios';
       },
       async fetchDeals(){
             try{
-                const response = await axios.get('http://0.0.0.0:8000/api/deal/');
+                const response = await axios.get('http://127.0.0.1:8000/api/deal/');
                 this.deals = response.data;
             } catch (e){
                 alert('Не отрабатывает')

@@ -1,13 +1,15 @@
 <template>
     <div>
       <CtrlPanelUI>
-        <template v-slot:text>Контрагент {{this.$route.params.id}}</template>
+        <template v-slot:text>{{this.cpname}}</template>
         <template v-slot:button><ButtonUI @click="showPopup">Добавить сделку</ButtonUI></template>
       </CtrlPanelUI>
       <PopupUI v-model:show="popupVisible">
         <DealForm @create="createDeal"/>
       </PopupUI>
-      <DealList :deals="deals"/>
+      <div class="emptyDeals" v-if="this.deals.length==0">Сделок еще нет</div>
+      <DealList v-else :deals="deals"/>
+      
     </div>
   </template>
   <script>
@@ -30,6 +32,7 @@ import axios from 'axios';
         deals:[
         ],
         popupVisible:false,
+        cpname:'',
       }
     },
     methods:{
@@ -44,6 +47,7 @@ import axios from 'axios';
             } catch (e){
                 alert('Не отрабатывает')
             }
+            this.cpname = this.deals[0].counterparty.name
         },
       showPopup(){
         this.popupVisible = true;
@@ -55,5 +59,11 @@ import axios from 'axios';
   }
   </script>
   <style>
-
+  .emptyDeals{
+    max-width: 1376px;
+    margin: auto;
+    text-align: left;
+    padding: 25px;
+    font-weight: 700;
+  }
   </style>

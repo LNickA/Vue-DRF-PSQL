@@ -189,7 +189,7 @@ export default{
     justify-content: space-between;
     padding: 48px;
     background-repeat: no-repeat;
-    background-position: right 0% top 40%;;
+    background-position: right 0% top 43%;;
 
 
 }
