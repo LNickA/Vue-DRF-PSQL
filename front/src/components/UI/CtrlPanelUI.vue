@@ -94,7 +94,7 @@ export default {
 .panel__container{
     max-width: 1376px;
     margin: auto;
-    padding: 60px 0px;
+    padding: 60px 20px;
 }
 .panel__back{
     display: flex;

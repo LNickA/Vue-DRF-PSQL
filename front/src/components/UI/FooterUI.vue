@@ -37,6 +37,7 @@ export default {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    padding: 0 20px;
 }
 p:first-child{
     margin-bottom: 35px;
