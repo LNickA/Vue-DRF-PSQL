@@ -162,7 +162,7 @@ export default{
 }
 .card__title{
     font-size: 28px;
-    margin-bottom: 40px;
+    margin-bottom: 60px;
 }
 .card__info{
     margin-top: 18px;
@@ -208,6 +208,7 @@ export default{
     display: flex;
     margin-top: 48px;
     align-self: flex-end;
+    cursor: pointer;
 }
 .card__card>button>svg{
     margin-left: 10px;

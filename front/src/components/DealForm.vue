@@ -121,7 +121,7 @@ export default {
                                         volume: this.deal.volume,
                                         cost: this.deal.cost })
             };
-            const response = await fetch("http://127.0.0.1:8000/api/deal/", requestOptions);
+            const response = await fetch("http://0.0.0.0:8000/api/deal/", requestOptions);
             const data = await response.json();
             this.errors = data
             this.deal.type = this.selectTypeArray[this.selectType-1],
@@ -147,7 +147,7 @@ export default {
     },
     async fetchType(){
             try{
-                const response = await axios.get('http://127.0.0.1:8000/api/type/');
+                const response = await axios.get('http://0.0.0.0:8000/api/type/');
                 this.selectTypeArray = response.data;
 
             } catch (e){
@@ -156,7 +156,7 @@ export default {
         },
     async fetchCounterParty(){
             try{
-                const response = await axios.get('http://127.0.0.1:8000/api/counterparty/');
+                const response = await axios.get('http://0.0.0.0:8000/api/counterparty/');
                 this.selectCounterPartyArray = response.data;
 
             } catch (e){
@@ -165,7 +165,7 @@ export default {
         },
     async fetchDeliveryPoint(){
             try{
-                const response = await axios.get('http://127.0.0.1:8000/api/deliverypoint/');
+                const response = await axios.get('http://0.0.0.0:8000/api/deliverypoint/');
                 this.selectDeliveryPointArray = response.data;
 
             } catch (e){
@@ -174,7 +174,7 @@ export default {
         },
     async fetchTool(){
             try{
-                const response = await axios.get('http://127.0.0.1:8000/api/tool/');
+                const response = await axios.get('http://0.0.0.0:8000/api/tool/');
                 this.selectToolArray = response.data;
 
             } catch (e){

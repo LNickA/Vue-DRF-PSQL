@@ -73,7 +73,6 @@ export default {
 
     mounted(){
       this.fetchCourse();
-
     }
   }
   </script>

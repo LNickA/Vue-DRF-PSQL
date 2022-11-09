@@ -104,7 +104,7 @@ import ButtonUI from './ButtonUI.vue';
 }
 .navbar__btns{
     margin-left: auto;
-    max-width: 480px;
+    max-width: 463px;
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -114,10 +114,12 @@ import ButtonUI from './ButtonUI.vue';
     background: white;
     border: 1px solid #0079C2;
     color: #0079C2;
-    font-size: 16px
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: 600;
 }
 .navbar__container{
-    max-width: 1376px;
+    max-width: 1280px;
     padding:24px;
     display: flex;
     align-items: center;

@@ -42,13 +42,13 @@ p:first-child{
     margin-bottom: 35px;
 }
 p>span{
-    font-weight: 700;
+    font-weight: 400;
 }
 p>a{
     cursor:pointer;
     text-decoration: none;
     color: inherit;
-    font-weight: 700;
+    font-weight: 400;
 }
 p>svg{
     margin-right: 7px;

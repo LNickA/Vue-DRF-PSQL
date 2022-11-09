@@ -6,7 +6,7 @@
                     <slot name="text"></slot>
                 </div>
                 <div class="panel__back">
-                    <div class=""></div>
+                    <hr>
                     <div @click="$router.push('/')" class="">
                         <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M15 0C6.75 0 0 6.75 0 15C0 23.25 6.75 30 15 30C23.25 30 30 23.25 30 15C30 6.75 23.25 0 15 0ZM22.5 20.4L20.4 22.5L15 17.1L9.6 22.5L7.5 20.4L12.9 15L7.5 9.6L9.6 7.5L15 12.9L20.4 7.5L22.5 9.6L17.1 15L22.5 20.4Z" fill="#BEE6FF"/>
@@ -88,6 +88,8 @@ export default {
     background: linear-gradient(180deg, rgba(0, 0, 0, 0.138) -14.07%, rgba(0, 0, 0, 0) 41.75%), url('@/static/images/background-panel.png');
     max-height: 360px;
     margin: auto;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
 }
 .panel__container{
     max-width: 1376px;
@@ -100,21 +102,20 @@ export default {
     align-items: center;
     align-content: flex-end;
     justify-content: space-between;
-    max-width: 1050px;
     margin-left: auto;
     width: 100%;
 }
-.panel__back>div:first-child{
-    max-width: 970px;
+.panel__back>hr{
     width: 100%;
-    border: 1px solid #E1F5FF;
     margin-right: 32px;
     margin-left: 37px;
+    color: white;
+    height: 1px;
 }
 .panel__slot{
     font-size: 56px;
     color:white;
-    max-width: 400px;
+    max-width: fit-content;
     margin: auto;
     flex-basis: 100%;
 }
@@ -138,6 +139,8 @@ export default {
     background-color: #0079C2;
     color: #fff !important;
     margin-right: 28px;
+    font-size: 16px;
+    font-weight: 600;
 }
 .panel__control>a{
     height: 52px;
